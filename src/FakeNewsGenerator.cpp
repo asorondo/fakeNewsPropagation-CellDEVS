@@ -45,8 +45,7 @@ FakeNewsGenerator::FakeNewsGenerator( const string &name )
 		e.addText( "No frequency parameter has been found for the model " + description() );
 		MTHROW ( e );
 	}
-    
-
+    int lastFakeID = 0;
 }
 
 /*******************************************************************
@@ -90,7 +89,8 @@ Model &FakeNewsGenerator::outputFunction( const CollectMessage &msg )
 			attacked_party = 1;
 		}
 
-	Tuple<Real> out_value{Real(attacked_party), Real(urgency), Real(credibility)};
+	Tuple<Real> out_value{lastFakeID, Real(attacked_party), Real(urgency), Real(credibility)};
 	sendOutput( msg.time(), out, out_value ) ;
+	lastFakeID += 1;
 	return *this ;
 }
