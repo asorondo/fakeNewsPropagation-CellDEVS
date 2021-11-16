@@ -29,9 +29,9 @@ in : in
 out: out_port
 
 link : in in@population(1,1)
-link : in in@population(1,2)
-link : in in@population(2,1)
-link : in in@population(2,2)
+%link : in in@population(1,2)
+%link : in in@population(2,1)
+%link : in in@population(2,2)
 
 link : out@population(0,0) out_port
 link : out@population(0,1) out_port
@@ -53,22 +53,22 @@ link : out@population(3,3) out_port
 localtransition : Propagation
 
 portInTransition : in@population(1,1) news
-portInTransition : in@population(1,2) news
-portInTransition : in@population(2,1) news
-portInTransition : in@population(2,2) news
+%portInTransition : in@population(1,2) news
+%portInTransition : in@population(2,1) news
+%portInTransition : in@population(2,2) news
 
 [news]
-rule: {[portValue(in)!0, portValue(in)!1, 1, #macro(media_belief), #macro(media_political_affinity),(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 0 {portValue(in)!0 > (0,0)!0} 
+rule: {[portValue(in)!0, portValue(in)!1, 1, 1, 1,(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 0 {portValue(in)!0 > (0,0)!0} 
 rule : {(0,0)} 0 {t}
 
 [Propagation]
 % Comportamiento de las poblaciones
 
 %mi vecino está emitiendo : cambio mi afinidad y creencia y me pongo en emitir
-rule : {[(0,-1)!0,(0,-1)!1 , 1, #macro(belief_arriba) ,#macro(political_affinity_arriba),(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 2 {(0,-1)!0>(0,0)!0 and (0,-1)!2=1 and (0,0)!2=0} 
-rule : {[(0,1)!0,(0,1)!1, 1,#macro(belief_abajo) ,#macro(political_affinity_abajo),(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 3 {(0,1)!0>(0,0)!0 and (0,1)!2=1 and (0,0)!2=0} 
-rule : {[(1,0)!0,(1,0)!1, 1,#macro(belief_der) ,#macro(political_affinity_der),(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 4 {(1,0)!0>(0,0)!0 and (1,0)!2=1 and (0,0)!2=0} 
-rule : {[(-1,0)!0,(-1,0)!1, 1,#macro(belief_izq) ,#macro(political_affinity_izq),(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 5 {(-1,0)!0>(0,0)!0 and (-1,0)!2=1 and (0,0)!2=0}
+rule : {[(0,-1)!0,(0,-1)!1 , 1, 1 ,1,(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 2 {(0,-1)!0>(0,0)!0 and (0,-1)!2=1 and (0,0)!2=0} 
+rule : {[(0,1)!0,(0,1)!1, 1,1 ,1,(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 3 {(0,1)!0>(0,0)!0 and (0,1)!2=1 and (0,0)!2=0} 
+rule : {[(1,0)!0,(1,0)!1, 1,1,1,(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 4 {(1,0)!0>(0,0)!0 and (1,0)!2=1 and (0,0)!2=0} 
+rule : {[(-1,0)!0,(-1,0)!1, 1,1 ,1,(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 5 {(-1,0)!0>(0,0)!0 and (-1,0)!2=1 and (0,0)!2=0}
 
 % passivate
 rule : {[(0,0)!0, 0, 0, 0,(0,0)!4,(0,0)!5,(0,0)!6,(0,0)!7,(0,0)!8,(0,0)!9]} 2 {(-1,0)!0=(0,0)!0 and (1,0)!0=(0,0)!0 and (0,1)!0=(0,0)!0 and (0,-1)!0=(0,0)!0 and (0,0)!2=1}
