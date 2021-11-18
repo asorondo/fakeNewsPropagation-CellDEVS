@@ -15,11 +15,13 @@
 #include "parsimu.h"      // class Simulator
 #include "strutil.h"       // str2Value( ... )
 #include <random>
+#include <string>
+
 #include "real.h"
 #include "tuple_value.h"
 
 using namespace std;
-
+#define VERBOSE true
 /*******************************************************************
 * Function Name: Generator
 * Description: constructor
@@ -30,7 +32,7 @@ FakeNewsGenerator::FakeNewsGenerator( const string &name )
 	  out( addOutputPort( "out" ) ),
 	  dist_int(0,1),
 	  dist_float(0.0,1.0), 
-
+ lastFakeID(0),
 	  rng(random_device()())
 {
 
@@ -45,7 +47,7 @@ FakeNewsGenerator::FakeNewsGenerator( const string &name )
 		e.addText( "No frequency parameter has been found for the model " + description() );
 		MTHROW ( e );
 	}
-    int lastFakeID = 0;
+    Real lastFakeID = 0;
 }
 
 /*******************************************************************
@@ -84,13 +86,14 @@ Model &FakeNewsGenerator::outputFunction( const CollectMessage &msg )
 	auto credibility = this->dist_float(this->rng); // [0,1)
     
     if (attacked_party > float(dist)) {
-			attacked_party = 0;
+			attacked_party = 0.0;
 		} else {
-			attacked_party = 1;
+			attacked_party = 1.0;
 		}
 
-	Tuple<Real> out_value{lastFakeID, Real(attacked_party), Real(urgency), Real(credibility)};
-	sendOutput( msg.time(), out, out_value ) ;
-	lastFakeID += 1;
+Tuple<Real> out_value{this->lastFakeID, Real(attacked_party), Real(urgency), Real(credibility)};
+ sendOutput( msg.time(), out, out_value ) ;
+ this->lastFakeID += 1;
 	return *this ;
 }
+

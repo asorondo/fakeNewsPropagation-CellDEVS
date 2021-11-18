@@ -16,16 +16,16 @@
 #include "except.h"     // class InvalidMessageException
 #include <random>
 
-#define GEN_MODEL_NAME "FakeNewsGenerator"
+#define ATOMIC_MODEL_NAME "FakeNewsGenerator"
 
 /** declarations **/
 class FakeNewsGenerator : public Atomic
 {
 public:
-	FakeNewsGenerator( const std::string &name = GEN_MODEL_NAME );				  // Default constructor
+	FakeNewsGenerator( const std::string &name = ATOMIC_MODEL_NAME );				  // Default constructor
 
 	virtual std::string className() const
-		{return "FakeNewsGenerator";}
+		{return ATOMIC_MODEL_NAME;}
 
 protected:
 	Model &initFunction() ;
@@ -41,7 +41,7 @@ private:
 	Port &out ;
 	VTime preparationTime;
     float dist;
-    
+    int lastFakeID;
 	std::uniform_int_distribution<int> dist_int; // 0 ò 1
 	std::uniform_real_distribution<> dist_float; // [0,1)
     std::mt19937 rng;
