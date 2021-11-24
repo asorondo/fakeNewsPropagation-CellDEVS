@@ -1,0 +1,21 @@
+[logfiles]
+ParallelRoot : fakeNewsPropagation-5.log00 
+top : fakeNewsPropagation-5.log19 
+fakenewsgenerator : fakeNewsPropagation-5.log01 
+population : fakeNewsPropagation-5.log02 
+population(0,0) : fakeNewsPropagation-5.log03 
+population(0,1) : fakeNewsPropagation-5.log04 
+population(0,2) : fakeNewsPropagation-5.log05 
+population(0,3) : fakeNewsPropagation-5.log06 
+population(1,0) : fakeNewsPropagation-5.log07 
+population(1,1) : fakeNewsPropagation-5.log08 
+population(1,2) : fakeNewsPropagation-5.log09 
+population(1,3) : fakeNewsPropagation-5.log10 
+population(2,0) : fakeNewsPropagation-5.log11 
+population(2,1) : fakeNewsPropagation-5.log12 
+population(2,2) : fakeNewsPropagation-5.log13 
+population(2,3) : fakeNewsPropagation-5.log14 
+population(3,0) : fakeNewsPropagation-5.log15 
+population(3,1) : fakeNewsPropagation-5.log16 
+population(3,2) : fakeNewsPropagation-5.log17 
+population(3,3) : fakeNewsPropagation-5.log18 
